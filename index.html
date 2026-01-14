@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>電子レンジ ワット数変換</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -32,7 +29,6 @@
         width: 100%;
         padding: 8px;
         margin-top: 5px;
-        box-sizing: border-box;
       }
       .result {
         margin-top: 20px;
@@ -55,23 +51,8 @@
         <option>1500</option>
       </select>
       <label>加熱時間</label>
-      <input
-        type="number"
-        id="minutes"
-        placeholder="分"
-        min="0"
-        inputmode="numeric"
-        pattern="[0-9]*"
-      />
-      <input
-        type="number"
-        id="seconds"
-        placeholder="秒"
-        min="0"
-        max="59"
-        inputmode="numeric"
-        pattern="[0-9]*"
-      />
+      <input type="number" id="minutes" placeholder="分" min="0" />
+      <input type="number" id="seconds" placeholder="秒" min="0" max="59" />
       <label>変換後のワット数</label>
       <select id="toWatt">
         <option>500</option>
