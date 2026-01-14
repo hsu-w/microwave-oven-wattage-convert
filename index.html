@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>電子レンジ ワット数変換</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 20px;
+      }
+      .container {
+        max-width: 420px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+      }
+      .result {
+        margin-top: 20px;
+        font-size: 1.2em;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>電子レンジ<br />ワット数変換</h1>
+      <label>元のワット数</label>
+      <select id="fromWatt">
+        <option>500</option>
+        <option>600</option>
+        <option>900</option>
+        <option>1000</option>
+        <option>1200</option>
+        <option>1500</option>
+      </select>
+      <label>加熱時間</label>
+      <input type="number" id="minutes" placeholder="分" min="0" />
+      <input type="number" id="seconds" placeholder="秒" min="0" max="59" />
+      <label>変換後のワット数</label>
+      <select id="toWatt">
+        <option>500</option>
+        <option>600</option>
+        <option>900</option>
+        <option>1000</option>
+        <option>1200</option>
+        <option>1500</option>
+      </select>
+      <div class="result" id="result">—</div>
+    </div>
+    <script>
+      function convert() {
+        const fromWatt = Number(document.getElementById("fromWatt").value);
+        const toWatt = Number(document.getElementById("toWatt").value);
+        const min = Number(document.getElementById("minutes").value || 0);
+        const sec = Number(document.getElementById("seconds").value || 0);
+        const totalSeconds = min * 60 + sec;
+        if (totalSeconds === 0) {
+          document.getElementById("result").textContent =
+            "時間を入力してください";
+          return;
+        }
+        const convertedSeconds = (totalSeconds * fromWatt) / toWatt;
+        const newMin = Math.floor(convertedSeconds / 60);
+        const newSec = Math.round(convertedSeconds % 60);
+        document.getElementById(
+          "result"
+        ).textContent = `${newMin}分 ${newSec}秒`;
+      }
+      document.querySelectorAll("input, select").forEach((el) => {
+        el.addEventListener("input", convert);
+      });
+    </script>
+  </body>
+</html>
